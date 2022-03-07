@@ -13,7 +13,7 @@ class OutliersAnalyticClass(GenericAnalyticClass):
 
     def create_3d_scatter_plot(self, x1, x2, x3, output, save_file_name: str):
         # Create 3D Scatter Plot of dominant features
-        plot = Axes3D(plt.figure(1), elev=-150, azim=100)
+        plot = Axes3D(plt.figure(1), elev=-150, azim=50)
         plot.scatter(
             x1,
             x2,
@@ -90,6 +90,8 @@ class OutliersAnalyticClass(GenericAnalyticClass):
                 save_file_name=col
             )
 
-        outliers_list = self.get_firm_desc([df_outliers])
+        df_only_outliers = df_outliers[df_outliers[self.ORDER_NO_WEIGHTED] < 5]
+
+        outliers_list = self.get_firm_desc([df_only_outliers])
 
         return outliers_list

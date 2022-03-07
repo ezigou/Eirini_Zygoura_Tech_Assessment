@@ -3,6 +3,7 @@ import pandas as pd
 from abc import ABC, abstractmethod
 from typing import List, Dict
 from matplotlib import pyplot as plt
+from matplotlib.pyplot import figure
 
 from src.generic_functions import get_df_sub_from_df_mega
 from src.clean_data import CleanDataHelper
@@ -89,8 +90,9 @@ class ProcessSeparateAnalyticClass(GenericAnalyticClass):
         df = pd.concat(_list_of_df, axis=1)
 
         df = df.head(15)
-
+        plt.rcParams["figure.figsize"] = (22, 15)
         df.plot(kind='bar', alpha=0.75, rot=30)
+
         plt.savefig(self.save_file_full_path())
 
     def run(self) -> List:
